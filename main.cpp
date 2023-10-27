@@ -27,6 +27,8 @@ class StockTrade {
 class Portfolio {
 	public: 
 		vector<StockTrade> myTrades;
+		// TODO: add tradeIDCounter to portfolio class
+		// to keep track of trade id numbers
 
 		Portfolio() {
 			cout << "Portfolio constructor" << endl;
@@ -54,17 +56,21 @@ class Portfolio {
 
 		// to calculate the quantity of each stock in the portfolio
 		// we can use a map, iterate through all the trades and add the quantity to the map with the stock symbol as the key
-		void calculateQtyShares() {
-			// TODO: this should return a mapping of stock symbols to quantity of shares
+		map<string,int> calculateQtyShares() {
 			map<string, int> stockQty;
 			for (int i = 0; i < myTrades.size(); i++) {
-				// TODO: add quantity if the trade is a buy
-				//       subtract quantity if the trade is a sell 
-				stockQty[myTrades[i].stockSymbol] += myTrades[i].quantity;
+				// add quantity if the trade is a buy
+				// subtract quantity if the trade is a sell 
+				if (myTrades[i].tradeType == "buy") {
+					stockQty[myTrades[i].stockSymbol] += myTrades[i].quantity;
+				} else {
+					stockQty[myTrades[i].stockSymbol] -= myTrades[i].quantity;
+				}
 			}
 			for (auto i = stockQty.begin(); i != stockQty.end(); i++) {
 				cout << i->first << " " << i->second << " shares" << endl;
 			}
+			return stockQty;
 		}
 
 		void calculatePortfolioValue() {
@@ -83,11 +89,13 @@ class Portfolio {
 int main () { 
 	cout << "main program" << endl;
 	StockTrade myTrade(1, "AAPL", "buy", 100, 100.00);
+	StockTrade mySellTrade(1, "AAPL", "Sell", 100, 100.00);
   Portfolio myPortfolio;
 
 	myPortfolio.addTrade(myTrade);
 	myPortfolio.addTrade(myTrade);
 	myPortfolio.addTrade(myTrade);
+	myPortfolio.addTrade(mySellTrade);
 
 	myPortfolio.printTrades();
 
