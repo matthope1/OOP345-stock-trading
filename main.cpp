@@ -49,6 +49,7 @@ class Portfolio {
 			for (int i = 0; i < myTrades.size(); i++) {
 				cout << myTrades[i].tradeID  << " ";
 				cout << myTrades[i].tradeType << " ";
+				cout << myTrades[i].stockSymbol<< " ";
 				cout << myTrades[i].quantity << " ";
 				cout << myTrades[i].price << " " << endl;
 			}
