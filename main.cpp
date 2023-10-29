@@ -75,32 +75,64 @@ class Portfolio {
 		}
 
 		void calculatePortfolioValue() {
-			// TODO: 
-			// create new map for storing stockSymbol -> totalStockValue 
-			// iterate through the trades and 
-			// subtract from total stock val for buy trades
-			// add to total stock val for sell trades
-			// do the opposite for the the amount of stocks
-			// add stock quantity for buy trades 
-			// subtract from quantity for sell trades
-		}
+			map<string, int> stockShares;       // To store the total number of shares for each stock.
+			map<string, double> stockValue;     // To store the total value of each stock.
+
+			for (StockTrade& trade : myTrades) {
+				if (trade.tradeType == "buy") {
+					stockShares[trade.stockSymbol] += trade.quantity;
+					stockValue[trade.stockSymbol] += trade.quantity * trade.price;
+				}
+				else if (trade.tradeType == "sell") {
+					stockShares[trade.stockSymbol] -= trade.quantity;
+					stockValue[trade.stockSymbol] -= trade.quantity * trade.price;
+				}
+			}
+
+			for (auto& entry : stockShares) {
+				string symbol = entry.first;
+				int totalShares = entry.second;
+				double totalValue = stockValue[symbol];
+
+				cout << "You have " << totalShares << " shares of " << symbol
+					<< " at a current value of $" << totalValue << endl;
+			}
+
+		// TODO: 
+		// create new map for storing stockSymbol -> totalStockValue 
+		// iterate through the trades and 
+		// subtract from total stock val for buy trades
+		// add to total stock val for sell trades
+		// do the opposite for the the amount of stocks
+		// add stock quantity for buy trades 
+		// subtract from quantity for sell trades
+	}
 };
 
 
 int main () { 
 	cout << "main program" << endl;
 	StockTrade myTrade(1, "AAPL", "buy", 100, 100.00);
-	StockTrade mySellTrade(1, "AAPL", "Sell", 100, 100.00);
-  Portfolio myPortfolio;
+	StockTrade mySellTrade(2, "AAPL", "Sell", 100, 100.00);
+	StockTrade myTrade2(3, "GOOG", "buy", 115, 175.00);
+	StockTrade myTrade3(4, "GOOG", "buy", 222, 175.00);
+
+	Portfolio myPortfolio;
 
 	myPortfolio.addTrade(myTrade);
-	myPortfolio.addTrade(myTrade);
-	myPortfolio.addTrade(myTrade);
 	myPortfolio.addTrade(mySellTrade);
+	myPortfolio.addTrade(myTrade);
+	myPortfolio.addTrade(myTrade);
+	myPortfolio.addTrade(myTrade2);
+	myPortfolio.addTrade(myTrade3);
 
 	myPortfolio.printTrades();
 
 	myPortfolio.calculateQtyShares();
+
+	myPortfolio.calculatePortfolioValue();
+
+
 
 	return 0; 
 }
