@@ -59,17 +59,17 @@ class Portfolio {
 		// we can use a map, iterate through all the trades and add the quantity to the map with the stock symbol as the key
 		map<string,int> calculateQtyShares() {
 			map<string, int> stockQty;
-			for (int i = 0; i < myTrades.size(); i++) {
+			for (StockTrade trade: myTrades) {
 				// add quantity if the trade is a buy
 				// subtract quantity if the trade is a sell 
-				if (myTrades[i].tradeType == "buy") {
-					stockQty[myTrades[i].stockSymbol] += myTrades[i].quantity;
+				if (trade.tradeType == "buy") {
+					stockQty[trade.stockSymbol] += trade.quantity;
 				} else {
-					stockQty[myTrades[i].stockSymbol] -= myTrades[i].quantity;
+					stockQty[trade.stockSymbol] -= trade.quantity;
 				}
 			}
-			for (auto i = stockQty.begin(); i != stockQty.end(); i++) {
-				cout << i->first << " " << i->second << " shares" << endl;
+			for (auto& entry : stockQty) {
+				cout << entry.first << " " << entry.second << " shares" << endl;
 			}
 			return stockQty;
 		}
