@@ -97,15 +97,6 @@ class Portfolio {
 				cout << "You have " << totalShares << " shares of " << symbol
 					<< " at a current value of $" << totalValue << endl;
 			}
-
-		// TODO: 
-		// create new map for storing stockSymbol -> totalStockValue 
-		// iterate through the trades and 
-		// subtract from total stock val for buy trades
-		// add to total stock val for sell trades
-		// do the opposite for the the amount of stocks
-		// add stock quantity for buy trades 
-		// subtract from quantity for sell trades
 	}
 };
 
