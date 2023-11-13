@@ -35,13 +35,6 @@ class Portfolio {
 		}
 
 		void addTrade(StockTrade trade) {
-			// TODO: add validation for the trade information   
-			// 1. stock symbol should be 3-4 characters
-			// 2. trade type should be a string, either buy or sell
-			// 3. quantity should be a positive integer
-			// 4. price should be a positive double
-			// 5. tradeID should be a positive integer
-
 			myTrades.push_back(trade);
 		}
 
@@ -100,6 +93,38 @@ class Portfolio {
 	}
 };
 
+bool validateTradeInfo(int tradeId, string stockSymbol, string tradeType, int quantity, double price) {
+	// 1. stock symbol should be 3-4 characters
+	// 2. trade type should be a string, either buy or sell
+	// 3. quantity should be a positive integer
+	// 4. price should be a positive double
+	// 5. tradeID should be a positive integer
+
+	bool tradeValid = true;
+
+	if (stockSymbol.length() < 3 || stockSymbol.length() > 4) {
+		tradeValid = false;
+	}
+
+	if (tradeType != "buy" || tradeType != "sell") {
+		tradeValid = false;
+	}
+
+	if (quantity < 0) {
+		tradeValid = false;
+	}
+
+	if (price < 0) {
+		tradeValid = false;
+	}
+	
+	if (tradeId < 0) {
+		tradeValid = false;
+	}
+
+	return tradeValid;
+}
+
 
 int main () { 
 	cout << "main program" << endl;
@@ -122,8 +147,6 @@ int main () {
 	myPortfolio.calculateQtyShares();
 
 	myPortfolio.calculatePortfolioValue();
-
-
 
 	return 0; 
 }
