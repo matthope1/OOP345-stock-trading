@@ -4,7 +4,8 @@
 #include "portfolio.h"
 
 
-void test(int expected, int actual, string testName) {
+template <typename T>
+void test(T expected, T actual, string testName) {
 	cout << testName << endl;
 
 	if (expected == actual) {
@@ -13,16 +14,16 @@ void test(int expected, int actual, string testName) {
 		cout << "FAILED " << testName << endl;
 		cout << "Expected " << expected << " but got " << actual << endl;
 	}
-
 }
-
 
 void testPortfolioAddTrade() {
 	Portfolio myPortfolio;
 	StockTrade myTrade(1, "AAPL", "buy", 100, 100.00);
 
-	test(0, myPortfolio.trades.size(), "testPortfolioAddTrade");
+	// there should be no trades in the portfolio 
+	test<int>(0, myPortfolio.trades.size(), "testPortfolioAddTrade");
 	myPortfolio.addTradeNoValidate(myTrade);
-	test(1, myPortfolio.trades.size(), "testPortfolioAddTrade");
+	// there should be one trade in the portfolio
+	test<int>(1, myPortfolio.trades.size(), "testPortfolioAddTrade");
 
 }
