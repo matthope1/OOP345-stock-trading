@@ -125,6 +125,7 @@ bool validateTradeInfo(int tradeId, string stockSymbol, string tradeType, int qu
 	return tradeValid;
 }
 
+// TODO: refer to workshopW9/IntBinaryTree.h and workshopW9/main.cpp to get an example of how to separate the class definition from the main program/ make header file
 
 int main () { 
 	cout << "main program" << endl;
