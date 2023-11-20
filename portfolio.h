@@ -94,7 +94,7 @@ class Portfolio {
 			cout << "+----------------------------------+\n";
 			map<string, int> stockShares;       // To store the total number of shares for each stock.
 			map<string, double> stockValue;     // To store the total value of each stock.
-			double portfolioValue; 
+			double portfolioValue = 0; 
 
 			for (StockTrade& trade : trades) {
 				if (trade.tradeType == "buy") {
@@ -113,12 +113,18 @@ class Portfolio {
 				string symbol = entry.first;
 				int totalShares = entry.second;
 				double totalValue = stockValue[symbol];
+				double averagePrice = totalValue / totalShares;
 
 				cout << "You have " << totalShares << " shares of " << symbol
-					<< " at a current value of $" << totalValue << endl;
+					<< " purchased at an average price of $" << averagePrice << endl;
 			}
+
 			return portfolioValue;
 		}
+		// TODO: function to calculate profit/loss for each position
+		
+
+
 };
 
 

@@ -80,5 +80,4 @@ void testPortfolioValue() {
 	myPortfolio.addTradeNoValidate(myTrade4);
 
 	test<double>(88975, myPortfolio.calculatePortfolioValue(), "testPortfolioValue");
-
 }
