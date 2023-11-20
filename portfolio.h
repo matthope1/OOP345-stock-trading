@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 #include <vector>
 #include <map>
@@ -13,7 +14,7 @@ class Portfolio {
 		// to keep track of trade id numbers
 
 		Portfolio() {
-			cout << "Portfolio constructor" << endl;
+			// cout << "Portfolio constructor" << endl;
 		}
 
 		void addTradeNoValidate(StockTrade trade) {

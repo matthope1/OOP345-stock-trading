@@ -2,6 +2,7 @@
 #include <vector>
 #include <map>
 #include "portfolio.h"
+#include "tests.h"
 
 using namespace std;
 
@@ -45,27 +46,33 @@ int main () {
 	// }
 
 	// testing main
-	cout << "main program" << endl;
-	StockTrade myTrade(1, "AAPL", "buy", 100, 100.00);
-	StockTrade mySellTrade(2, "AAPL", "Sell", 100, 100.00);
-	StockTrade myTrade2(3, "GOOG", "buy", 115, 175.00);
-	StockTrade myTrade3(4, "GOOG", "buy", 222, 175.00);
+	// cout << "main program" << endl;
+	// StockTrade myTrade(1, "AAPL", "buy", 100, 100.00);
+	// StockTrade mySellTrade(2, "AAPL", "Sell", 100, 100.00);
+	// StockTrade myTrade2(3, "GOOG", "buy", 115, 175.00);
+	// StockTrade myTrade3(4, "GOOG", "buy", 222, 175.00);
 
-	Portfolio myPortfolio;
+	// Portfolio myPortfolio;
 
-	myPortfolio.addTradeNoValidate(myTrade);
-	myPortfolio.addTradeNoValidate(mySellTrade);
-	myPortfolio.addTradeNoValidate(myTrade);
-	myPortfolio.addTradeNoValidate(myTrade);
-	myPortfolio.addTradeNoValidate(myTrade2);
-	myPortfolio.addTradeNoValidate(myTrade3);
+	// myPortfolio.addTradeNoValidate(myTrade);
+	// myPortfolio.addTradeNoValidate(mySellTrade);
+	// myPortfolio.addTradeNoValidate(myTrade);
+	// myPortfolio.addTradeNoValidate(myTrade);
+	// myPortfolio.addTradeNoValidate(myTrade2);
+	// myPortfolio.addTradeNoValidate(myTrade3);
 
-	myPortfolio.printTrades();
+	// myPortfolio.printTrades();
 
-	myPortfolio.calculateQtyShares();
+	// myPortfolio.calculateQtyShares();
 
-	myPortfolio.calculatePortfolioValue();
+	// myPortfolio.calculatePortfolioValue();
 	// end testing main
+
+	// testing test.h
+	testPortfolioAddTrade();
+	testPortfolioCalculateQtyShares();
+
+	// end testing test.h
 
 	return 0; 
 }
