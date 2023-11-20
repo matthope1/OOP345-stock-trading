@@ -29,6 +29,8 @@ class Portfolio {
 			int numOfShares;
 			double stockValue;
 
+			map<string, int> stockQty = calculateQtyShares();
+
 			// Get user input
 			cout << "Enter trade ID: ";
 			cin >> tID;
@@ -41,7 +43,7 @@ class Portfolio {
 			cout << "Enter price per share: ";
 			cin >> stockValue;
 
-			bool tradeValid = validateTradeInfo(tID, symbol, type, numOfShares, stockValue);
+			bool tradeValid = validateTradeInfo(tID, symbol, type, numOfShares, stockValue, stockQty) ;
 
 			if (tradeValid) {
 				StockTrade trade(tID, symbol, type, numOfShares, stockValue);
@@ -122,7 +124,7 @@ class Portfolio {
 			return portfolioValue;
 		}
 		// TODO: function to calculate profit/loss for each position
-		
+
 
 
 };

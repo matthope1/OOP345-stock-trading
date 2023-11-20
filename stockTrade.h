@@ -21,7 +21,7 @@ class StockTrade {
 		}
 };
 
-bool validateTradeInfo(int tradeId, string stockSymbol, string tradeType, int quantity, double price) {
+bool validateTradeInfo(int tradeId, string stockSymbol, string tradeType, int quantity, double price, map<string,int> stockQty) {
 	// 1. stock symbol should be 3-4 characters
 	// 2. trade type should be a string, either buy or sell
 	// 3. quantity should be a positive integer
@@ -53,6 +53,17 @@ bool validateTradeInfo(int tradeId, string stockSymbol, string tradeType, int qu
 	if (tradeId < 0) {
 		cout << "Error: TradeID should be a positive integer." << endl;
 		tradeValid = false;
+	}
+
+	// if trade is a sell
+	// check if trade exists in portfolio already
+	// if it doesn't then the sell should fail
+	// if it does, then check if thee are enough shares to sell
+	if (tradeType == "sell") {
+		if (stockQty[stockSymbol] < quantity) {
+			cout << "Error: Not enough shares to sell." << endl;
+			tradeValid = false;
+		}
 	}
 
 	return tradeValid;
