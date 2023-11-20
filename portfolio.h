@@ -88,21 +88,24 @@ class Portfolio {
 			cout << "+----------------------------------+\n";
 		}
 
-		void calculatePortfolioValue() {
+		double calculatePortfolioValue() {
 			cout << "\n\n+----------------------------------+\n";
 			cout << "|      Current Portfolio Value     |\n";
 			cout << "+----------------------------------+\n";
 			map<string, int> stockShares;       // To store the total number of shares for each stock.
 			map<string, double> stockValue;     // To store the total value of each stock.
+			double portfolioValue; 
 
 			for (StockTrade& trade : trades) {
 				if (trade.tradeType == "buy") {
 					stockShares[trade.stockSymbol] += trade.quantity;
 					stockValue[trade.stockSymbol] += trade.quantity * trade.price;
+					portfolioValue += trade.quantity * trade.price;
 				}
 				else if (trade.tradeType == "sell") {
 					stockShares[trade.stockSymbol] -= trade.quantity;
 					stockValue[trade.stockSymbol] -= trade.quantity * trade.price;
+					portfolioValue -= trade.quantity * trade.price;
 				}
 			}
 
@@ -114,7 +117,8 @@ class Portfolio {
 				cout << "You have " << totalShares << " shares of " << symbol
 					<< " at a current value of $" << totalValue << endl;
 			}
-	}
+			return portfolioValue;
+		}
 };
 
 

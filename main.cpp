@@ -71,6 +71,7 @@ int main () {
 	// testing test.h
 	testPortfolioAddTrade();
 	testPortfolioCalculateQtyShares();
+	testPortfolioValue();
 
 	// end testing test.h
 

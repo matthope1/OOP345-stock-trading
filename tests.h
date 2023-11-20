@@ -63,3 +63,22 @@ void testPortfolioCalculateQtyShares() {
 
 	test<map<string,int>>(expectedResult, myPortfolio.calculateQtyShares(), "testPortfolioCalculateQtyShares");
 }
+
+void testPortfolioValue() {
+	Portfolio myPortfolio;
+
+	StockTrade myTrade(1, "AAPL", "buy", 100, 100.00);
+	StockTrade myTrade2(2, "AAPL", "buy", 200, 100.00);
+	StockTrade myTrade3(3, "GOOG", "buy", 115, 175.00);
+	StockTrade myTrade4(4, "GOOG", "buy", 222, 175.00);
+
+	// (100 * 100 ) + (200 * 100 ) + (115 * 175) + (222 * 175) = 88975
+
+	myPortfolio.addTradeNoValidate(myTrade);
+	myPortfolio.addTradeNoValidate(myTrade2);
+	myPortfolio.addTradeNoValidate(myTrade3);
+	myPortfolio.addTradeNoValidate(myTrade4);
+
+	test<double>(88975, myPortfolio.calculatePortfolioValue(), "testPortfolioValue");
+
+}
