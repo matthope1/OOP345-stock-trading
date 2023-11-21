@@ -123,7 +123,13 @@ class Portfolio {
 
 			return portfolioValue;
 		}
+
 		// TODO: function to calculate profit/loss for each position
+		// if you buy a stock today for $50, and tomorrow the stock is worth $52, your percentage gain is 4% ([$52 - $50] / $50).
+		void calculateProfitLoss() {
+
+
+		}
 
 
 
