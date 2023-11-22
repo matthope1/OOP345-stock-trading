@@ -4,6 +4,7 @@
 #include <map>
 #include "stockTrade.h"
 #include <algorithm>
+#include <iomanip>
 
 using namespace std;
 
@@ -40,19 +41,20 @@ class Portfolio {
 			tradeIDCounter++;
 		}
 
+
 		void printTrades() {
-			cout << "\n+----------------------------------+\n";
-			cout << "|          List of Trades          |\n";
-			cout << "+----------------------------------+\n";
-			for (StockTrade trade: trades) {
-				cout << trade.tradeID  << " ";
-				cout << trade.tradeType << " ";
-				cout << trade.stockSymbol<< " ";
-				cout << trade.quantity << " ";
-				cout << trade.price << " " << endl;
+			cout << "+---------------------------------------------------------+\n";
+			cout << "| Trade ID | Trade Type | Stock Symbol | Quantity | Price |\n";
+			cout << "+---------------------------------------------------------+\n";
+			for (StockTrade trade : trades) {
+				cout << "| " << setw(9) << trade.tradeID << "| ";
+				cout << setw(11) << trade.tradeType << "|  ";
+				cout << setw(12) << trade.stockSymbol << "|    ";
+				cout << setw(6) << trade.quantity << "| ";
+				cout << setw(6) << fixed << setprecision(2) << trade.price << "|\n";
 			}
-			cout << "+----------------------------------+\n";
-		}
+			cout << "+---------------------------------------------------------+\n";
+    }
 
 		// to calculate the quantity of each stock in the portfolio
 		// we can use a map, iterate through all the trades and add the quantity to the map with the stock symbol as the key
