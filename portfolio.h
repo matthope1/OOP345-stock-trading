@@ -101,10 +101,15 @@ class Portfolio {
 			}
 
 			for (auto& entry : stockShares) {
+				double averagePrice;
 				string symbol = entry.first;
 				int totalShares = entry.second;
 				double totalValue = stockValue[symbol];
-				double averagePrice = totalValue / totalShares;
+				if (totalShares == 0) {
+					averagePrice = 0;
+				} else {
+					averagePrice = totalValue / totalShares;
+				}
 
 				cout << "You have " << totalShares << " shares of " << symbol
 					<< " purchased at an average price of $" << averagePrice << endl;
