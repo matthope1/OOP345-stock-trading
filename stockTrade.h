@@ -64,13 +64,6 @@ StockTrade getUserInput(map<string,int> stockQty) {
 		cout << "Enter quantity of shares: ";
 		cin >> numOfShares;
 
-		cout << endl;
-		cout <<  "count: "<<  stockQty.count(symbol) << endl;
-		cout << endl;
-		cout << "stockQty[symbol]: " << stockQty[symbol] << endl;
-
-
-
 		if (numOfShares < 0) {
 			cout << "Error: Quantity should be a positive integer." << endl;
 		} else if (type == "sell") {
