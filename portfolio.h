@@ -3,6 +3,7 @@
 #include <vector>
 #include <map>
 #include "stockTrade.h"
+#include <algorithm>
 
 using namespace std;
 
@@ -10,15 +11,16 @@ using namespace std;
 class Portfolio {
 	public: 
 		vector<StockTrade> trades;
-		// TODO: add tradeIDCounter to portfolio class
-		// to keep track of trade id numbers
+		int tradeIDCounter = 1;
 
 		Portfolio() {
 			// cout << "Portfolio constructor" << endl;
 		}
 
 		void addTradeNoValidate(StockTrade trade) {
+			trade.tradeID = tradeIDCounter;
 			trades.push_back(trade);
+			tradeIDCounter++;
 		}
 
 		void addTrade() {
@@ -32,25 +34,10 @@ class Portfolio {
 			map<string, int> stockQty = calculateQtyShares();
 
 			// Get user input
-			cout << "Enter trade ID: ";
-			cin >> tID;
-			cout << "Enter stock symbol (3-4 characters): ";
-			cin >> symbol;
-			cout << "Enter trade type (buy/sell): ";
-			cin >> type;
-			cout << "Enter quantity of shares: ";
-			cin >> numOfShares;
-			cout << "Enter price per share: ";
-			cin >> stockValue;
-
-			bool tradeValid = validateTradeInfo(tID, symbol, type, numOfShares, stockValue, stockQty) ;
-
-			if (tradeValid) {
-				StockTrade trade(tID, symbol, type, numOfShares, stockValue);
-				trades.push_back(trade);
-			} else {
-				cout << "Trade not added." << endl;
-			}
+			StockTrade trade = getUserInput(stockQty);
+			trade.tradeID = tradeIDCounter;
+			trades.push_back(trade);
+			tradeIDCounter++;
 		}
 
 		void printTrades() {
@@ -125,14 +112,35 @@ class Portfolio {
 		}
 
 		// TODO: function to calculate profit/loss for each position
-		// if you buy a stock today for $50, and tomorrow the stock is worth $52, your percentage gain is 4% ([$52 - $50] / $50).
+		// if you buy apple stock today for $50, and tomorrow the stock is worth $52, your percentage gain is 4% ([$52 - $50] / $50).
 		void calculateProfitLoss() {
 
 
-		}
+        map<string, vector<StockTrade>> groupedTrades;
 
+        // Group trades by stock symbol
+        for (auto& trade : trades) {
+            groupedTrades[trade.stockSymbol].push_back(trade);
+        }
 
+        // Iterate through each group
+        for (auto& group : groupedTrades) {
+            cout << "\nStock Symbol: " << group.first << endl;
 
+            // Sort trades by tradeID
+            sort(group.second.begin(), group.second.end(), [](const StockTrade& a, const StockTrade& b) {
+                return a.tradeID < b.tradeID;
+                });
+
+            double lastPrice = 0;
+            for (auto& trade : group.second) {
+                if (lastPrice != 0) {
+                    double change = trade.price - lastPrice;
+                    double percentChange = (change / lastPrice) * 100;
+                    cout << "Trade ID: " << trade.tradeID << ", Change: " << change << ", Percent Change: " << percentChange << "%" << endl;
+                }
+                lastPrice = trade.price;
+            }
+        }
+    }
 };
-
-

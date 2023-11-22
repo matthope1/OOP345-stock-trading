@@ -8,42 +8,42 @@ using namespace std;
 
 int main () { 
 
-	// Portfolio myPortfolio;
-	// int choice = 0;
+	Portfolio myPortfolio;
+	int choice = 0;
 
-	// while (true) {
-	// 	cout << "====================================\n";
-	// 	cout << "= Stock Portfolio Management System =\n";
-	// 	cout << "====================================\n";
+	while (true) {
+		cout << "====================================\n";
+		cout << "= Stock Portfolio Management System =\n";
+		cout << "====================================\n";
 
-	// 	cout << "1. Add a Trade\n";
-	// 	cout << "2. Print Trades\n";
-	// 	cout << "3. Calculate Quantity of Shares\n";
-	// 	cout << "4. Calculate Portfolio Value\n";
-	// 	cout << "5. Exit\n";
-	// 	cout << "Enter your choice: ";
-	// 	cin >> choice;
+		cout << "1. Add a Trade\n";
+		cout << "2. Print Trades\n";
+		cout << "3. Calculate Quantity of Shares\n";
+		cout << "4. Calculate Portfolio Value\n";
+		cout << "5. Exit\n";
+		cout << "Enter your choice: ";
+		cin >> choice;
 
-	// 	switch (choice) {
-	// 	case 1:
-	// 		myPortfolio.addTrade();
-	// 		break;
-	// 	case 2:
-	// 		myPortfolio.printTrades();
-	// 		break;
-	// 	case 3:
-	// 		myPortfolio.calculateQtyShares();
-	// 		break;
-	// 	case 4:
-	// 		myPortfolio.calculatePortfolioValue();
-	// 		break;
-	// 	case 5:
-	// 		cout << "Exiting program." << endl;
-	// 		return 0;
-	// 	default:
-	// 		cout << "Invalid choice. Please try again." << endl;
-	// 	}
-	// }
+		switch (choice) {
+		case 1:
+			myPortfolio.addTrade();
+			break;
+		case 2:
+			myPortfolio.printTrades();
+			break;
+		case 3:
+			myPortfolio.calculateQtyShares();
+			break;
+		case 4:
+			myPortfolio.calculatePortfolioValue();
+			break;
+		case 5:
+			cout << "Exiting program." << endl;
+			return 0;
+		default:
+			cout << "Invalid choice. Please try again." << endl;
+		}
+	}
 
 	// testing main
 	// cout << "main program" << endl;
@@ -66,12 +66,12 @@ int main () {
 	// myPortfolio.calculateQtyShares();
 
 	// myPortfolio.calculatePortfolioValue();
-	// end testing main
+	// // end testing main
 
-	// testing test.h
-	testPortfolioAddTrade();
-	testPortfolioCalculateQtyShares();
-	testPortfolioValue();
+	// // testing test.h
+	// testPortfolioAddTrade();
+	// testPortfolioCalculateQtyShares();
+	// testPortfolioValue();
 
 	// end testing test.h
 
