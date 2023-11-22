@@ -23,7 +23,7 @@ class StockTrade {
 
 
 StockTrade getUserInput(map<string,int> stockQty) {
-	// stockQty is for checking if there are enough shares to sell
+	// passing in stockQty to check if there are enough shares to sell
 
 	string symbol;
 	string type;
@@ -51,6 +51,8 @@ StockTrade getUserInput(map<string,int> stockQty) {
 
 		if (!(type == "buy" || type == "sell")) {
 			cout << "Error: Trade type should be either 'buy' or 'sell'." << endl;
+			// if the trade is in the portfolio already, then the sell should go through &
+			// trade type is sell, check if there are enough shares to sell
 		} else {
 			loop = false;
 		}
@@ -61,8 +63,22 @@ StockTrade getUserInput(map<string,int> stockQty) {
 	while (loop) {
 		cout << "Enter quantity of shares: ";
 		cin >> numOfShares;
+
+		cout << endl;
+		cout <<  "count: "<<  stockQty.count(symbol) << endl;
+		cout << endl;
+		cout << "stockQty[symbol]: " << stockQty[symbol] << endl;
+
+
+
 		if (numOfShares < 0) {
 			cout << "Error: Quantity should be a positive integer." << endl;
+		} else if (type == "sell") {
+			if ((stockQty.count(symbol) == 0) || stockQty[symbol] < numOfShares) {
+				cout << "Error: Not enough shares to sell." << endl;
+			} 	else {
+				loop = false;
+			}
 		} else {
 			loop = false;
 		}
@@ -88,11 +104,7 @@ StockTrade getUserInput(map<string,int> stockQty) {
 
 	// TODO: 
 
-	// if (type == "sell") {
-	// 	if (stockQty[stockSymbol] < quantity) {
-	// 		cout << "Error: Not enough shares to sell." << endl;
-	// 		tradeValid = false;
-	// 	}
+
 
 	StockTrade trade(0, symbol, type, numOfShares, stockValue);
 	return trade;
