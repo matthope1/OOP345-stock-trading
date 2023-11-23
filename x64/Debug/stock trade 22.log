@@ -1,0 +1,15 @@
+﻿  main.cpp
+F:\C++ programs\stock trade 22\stock trade 22\portfolio.h(33,10): warning C4101: 'stockValue': unreferenced local variable
+F:\C++ programs\stock trade 22\stock trade 22\portfolio.h(32,7): warning C4101: 'numOfShares': unreferenced local variable
+F:\C++ programs\stock trade 22\stock trade 22\portfolio.h(29,7): warning C4101: 'tID': unreferenced local variable
+F:\C++ programs\stock trade 22\stock trade 22\tests.h(38,65): warning C4267: 'argument': conversion from 'size_t' to 'T', possible loss of data
+          with
+          [
+              T=int
+          ]
+F:\C++ programs\stock trade 22\stock trade 22\tests.h(41,65): warning C4267: 'argument': conversion from 'size_t' to 'T', possible loss of data
+          with
+          [
+              T=int
+          ]
+  stock trade 22.vcxproj -> F:\C++ programs\stock trade 22\x64\Debug\stock trade 22.exe
