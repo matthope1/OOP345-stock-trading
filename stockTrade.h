@@ -42,6 +42,11 @@ StockTrade getUserInput(map<string,int> stockQty) {
 		cin.clear();
 	}
 
+	// Convert stock symbol to uppercase
+	for (char& c : symbol) {
+		c = toupper(c);
+	}
+
 	//  resetting flag once out of previous loop 
 	loop = true;
 
@@ -49,12 +54,24 @@ StockTrade getUserInput(map<string,int> stockQty) {
 		cout << "Enter trade type (buy/sell): ";
 		cin >> type;
 
-		if (!(type == "buy" || type == "sell")) {
+		for (char& c : type) {
+			c = toupper(c);
+		}
+
+		if (!(type == "BUY" || type == "SELL")) {
 			cout << "Error: Trade type should be either 'buy' or 'sell'." << endl;
 			// if the trade is in the portfolio already, then the sell should go through &
 			// trade type is sell, check if there are enough shares to sell
 		} else {
-			loop = false;
+			if (type == "SELL") {
+				if(stockQty.count(symbol) == 0) {
+					cout << "Error: You do not currently own any shares of " << symbol << "." << endl;
+				} else {
+					loop = false;
+				}
+			} else {
+				loop = false;
+			}
 		}
 	}
 
@@ -66,10 +83,10 @@ StockTrade getUserInput(map<string,int> stockQty) {
 
 		if (numOfShares < 0) {
 			cout << "Error: Quantity should be a positive integer." << endl;
-		} else if (type == "sell") {
+		} else if (type == "SELL") {
 			if ((stockQty.count(symbol) == 0) || stockQty[symbol] < numOfShares) {
 				cout << "Error: Not enough shares to sell." << endl;
-			} 	else {
+			} else {
 				loop = false;
 			}
 		} else {

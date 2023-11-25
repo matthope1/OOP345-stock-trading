@@ -31,7 +31,7 @@ void test(T expected, T actual, string testName) {
 
 void testPortfolioAddTrade() {
 	Portfolio myPortfolio;
-	StockTrade myTrade(1, "AAPL", "buy", 100, 100.00);
+	StockTrade myTrade(1, "AAPL", "BUY", 100, 100.00);
 
 	// there should be no trades in the portfolio 
 	test<int>(0, myPortfolio.trades.size(), "testPortfolioAddTrade");
@@ -43,10 +43,10 @@ void testPortfolioAddTrade() {
 
 void testPortfolioCalculateQtyShares() {
 	Portfolio myPortfolio;
-	StockTrade myTrade(1, "AAPL", "buy", 100, 100.00);
-	StockTrade myTrade2(2, "AAPL", "buy", 200, 100.00);
-	StockTrade myTrade3(3, "GOOG", "buy", 115, 175.00);
-	StockTrade myTrade4(4, "GOOG", "buy", 222, 175.00);
+	StockTrade myTrade(1, "AAPL", "BUY", 100, 100.00);
+	StockTrade myTrade2(2, "AAPL", "BUY", 200, 100.00);
+	StockTrade myTrade3(3, "GOOG", "BUY", 115, 175.00);
+	StockTrade myTrade4(4, "GOOG", "BUY", 222, 175.00);
 
 	// create map of stock symbol and quantity of shares
 	map<string,int> expectedResult;
@@ -67,10 +67,10 @@ void testPortfolioCalculateQtyShares() {
 void testPortfolioValue() {
 	Portfolio myPortfolio;
 
-	StockTrade myTrade(1, "AAPL", "buy", 100, 100.00);
-	StockTrade myTrade2(2, "AAPL", "buy", 200, 100.00);
-	StockTrade myTrade3(3, "GOOG", "buy", 115, 175.00);
-	StockTrade myTrade4(4, "GOOG", "buy", 222, 175.00);
+	StockTrade myTrade(1, "AAPL", "BUY", 100, 100.00);
+	StockTrade myTrade2(2, "AAPL", "BUY", 200, 100.00);
+	StockTrade myTrade3(3, "GOOG", "BUY", 115, 175.00);
+	StockTrade myTrade4(4, "GOOG", "BUY", 222, 175.00);
 
 	// (100 * 100 ) + (200 * 100 ) + (115 * 175) + (222 * 175) = 88975
 

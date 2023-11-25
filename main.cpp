@@ -22,30 +22,36 @@ int main () {
 		cout << "4. Calculate Portfolio Value\n";
 		cout << "5. Exit\n";
 		cout << "Enter your choice: ";
-		cin >> choice;
+
+		// Input validation
+		while (!(cin >> choice)) {
+			cout << "Invalid input. Please enter a number: ";
+			cin.clear(); // clear the error flag
+			cin.ignore(numeric_limits<streamsize>::max(), '\n'); // skip to the next newline to avoid infinite loop
+		}
 
 		switch (choice) {
-		case 1:
-			myPortfolio.addTrade();
-			break;
-		case 2:
-			myPortfolio.printTrades();
-			break;
-		case 3:
-			myPortfolio.calculateQtyShares();
-			break;
-		case 4:
-			myPortfolio.calculatePortfolioValue();
-			break;
-		case 5:
-			cout << "Exiting program." << endl;
-			return 0;
-		default:
-			cout << "Invalid choice. Please try again." << endl;
+			case 1:
+				myPortfolio.addTrade();
+				break;
+			case 2:
+				myPortfolio.printTrades();
+				break;
+			case 3:
+				myPortfolio.calculateQtyShares();
+				break;
+			case 4:
+				myPortfolio.calculatePortfolioValue();
+				break;
+			case 5:
+				cout << "Exiting program." << endl;
+				return 0;
+			default:
+				cout << "Invalid choice. Please try again." << endl;
 		}
 	}
 
-	// testing main
+	// // testing main
 	// cout << "main program" << endl;
 	// StockTrade myTrade(1, "AAPL", "buy", 100, 100.00);
 	// StockTrade mySellTrade(2, "AAPL", "Sell", 100, 100.00);
@@ -73,7 +79,7 @@ int main () {
 	// testPortfolioCalculateQtyShares();
 	// testPortfolioValue();
 
-	// end testing test.h
+	// // end testing test.h
 
 	return 0; 
 }
