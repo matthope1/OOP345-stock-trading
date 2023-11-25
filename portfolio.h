@@ -68,22 +68,28 @@ public:
 
 	map<string, int> calculateQtyShares() {
 		// Banner Header
-		cout << "\n+----------------------------------+\n";
-		cout << "|    Quantity of Shares per Stock  |\n";
-		cout << "+----------------------------------+\n";
+		cout << "\n+-------------------------------------------------+\n";
+		cout << "|    Quantity of Shares per Stock                 |\n";
+		cout << "+-------------------------------------------------+\n";
 
 		// Column Headers
 		const int symbolWidth = 17;
 		const int sharesWidth = 12;
+
 		cout << "| " << left << setw(symbolWidth) << "Stock Symbol"
 			<< " | " << setw(sharesWidth) << "Shares"
+			<< " | " << setw(sharesWidth) << "Avg Price($)"
 			<< " |\n";
-		cout << "+-------------------+--------------+\n";
+		cout << "+-------------------+-----------------------------+\n";
 
 		map<string, int> stockQty;
+		map<string, int> buyCount;
+		map<string, double> buyAvg;
 		for (StockTrade trade : trades) {
 			if (trade.tradeType == "BUY") {
 				stockQty[trade.stockSymbol] += trade.quantity;
+				buyCount[trade.stockSymbol]++;
+				buyAvg[trade.stockSymbol] += trade.price;
 			}
 			else {
 				stockQty[trade.stockSymbol] -= trade.quantity;
@@ -92,13 +98,16 @@ public:
 
 		// Print each stock's quantity
 		for (auto& entry : stockQty) {
+			double avg = buyAvg[entry.first] / buyCount[entry.first];
+
 			cout << "| " << setw(symbolWidth) << entry.first
 				<< " | " << setw(sharesWidth) << entry.second
+				<< " | " << setw(sharesWidth) << avg 
 				<< " |\n";
 		}
 
 		// Footer
-		cout << "+-------------------+--------------+\n";
+		cout << "+-------------------+-----------------------------+\n";
 		cout << "\n\n";
 		return stockQty;
 	}
@@ -110,16 +119,37 @@ public:
 		cout << "+----------------------------------+\n";
 
 		map<string, double> totalBuy, totalSell;
+		map<string, int> stockQty = calculateQtyShares();
+
+		// portfolioValue = amount of stock * current price 
+		// since we don't have a real-time current price we're 
+		// going to use an average of all the trade prices to get current price
+
 		double portfolioValue = 0;
+
+		// get avg trade price for each stock
+		map<string, int> tradeCount;
+		map<string, double> tradeAvg;
+		for (StockTrade trade : trades) {
+			tradeCount[trade.stockSymbol]++;
+			tradeAvg[trade.stockSymbol] += trade.price;
+		}
+
+		// calculate portfolio value
+		for (auto& entry : stockQty) {
+			string symbol = entry.first;
+			int qty = entry.second;
+			double avg = tradeAvg[symbol] / tradeCount[symbol];
+			double stockValue = avg * qty;
+			portfolioValue += stockValue;
+		}
 
 		for (StockTrade& trade : trades) {
 			if (trade.tradeType == "BUY") {
 				totalBuy[trade.stockSymbol] += trade.quantity * trade.price;
-				portfolioValue += trade.quantity * trade.price;
 			}
 			else if (trade.tradeType == "SELL") {
 				totalSell[trade.stockSymbol] += trade.quantity * trade.price;
-				portfolioValue -= trade.quantity * trade.price;
 			}
 		}
 
