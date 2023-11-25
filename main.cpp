@@ -8,12 +8,12 @@ using namespace std;
 
 int main() {
 
-	StockTrade myTrade1(1, "AAPL", "buy", 356, 100.00);
-	StockTrade myTrade2(2, "AAPL", "buy", 175, 50.00);
-	StockTrade myTrade3(3, "GOOG", "buy", 471, 163.00);
-	StockTrade myTrade4(4, "AAPL", "sell", 117, 75.00);
-	StockTrade myTrade5(5, "GOOG", "buy", 115, 175.00);
-	StockTrade myTrade6(6, "GOOG", "buy", 222, 175.00);
+	StockTrade myTrade1(1, "APPL", "BUY", 356, 100.00);
+	StockTrade myTrade2(2, "APPL", "BUY", 175, 50.00);
+	StockTrade myTrade3(3, "GOOG", "BUY", 471, 163.00);
+	StockTrade myTrade4(4, "APPL", "SELL", 117, 75.00);
+	StockTrade myTrade5(5, "GOOG", "BUY", 115, 175.00);
+	StockTrade myTrade6(6, "GOOG", "BUY", 222, 175.00);
 
 	Portfolio myPortfolio;
 
@@ -29,7 +29,7 @@ int main() {
 
 	while (true) {
 		cout << "====================================\n";
-		cout << "= Stock Portfolio Management System =\n";
+		cout << "= Stock Portfolio Management System=\n";
 		cout << "====================================\n";
 
 		cout << "1. Add a Trade\n";
@@ -38,7 +38,15 @@ int main() {
 		cout << "4. Calculate Portfolio Value\n";
 		cout << "5. Exit\n";
 		cout << "Enter your choice: ";
-		cin >> choice;
+		//cin >> choice;
+
+		// Input validation
+		while (!(cin >> choice)) 
+		{
+		cout << "Invalid input. Please enter a number: ";
+		cin.clear(); // clear the error flag
+		cin.ignore(numeric_limits<streamsize>::max(), '\n'); // skip to the next newline to avoid infinite loop
+		}
 
 		switch (choice) {
 		case 1:
@@ -57,7 +65,7 @@ int main() {
 			cout << "Exiting program." << endl;
 			return 0;
 		default:
-			cout << "Invalid choice. Please try again." << endl;
+			cout << "Invalid choice. Please try again." << endl << endl;
 		}
 	}
 

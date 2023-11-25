@@ -38,7 +38,7 @@ StockTrade getUserInput(map<string, int> stockQty) {
 
 	cout << "Enter stock symbol (3-4 characters): ";
 	while (!(cin >> symbol) || symbol.length() < 3 || symbol.length() > 4) {
-		cout << "Invalid input. Please enter a stock symbol of 3-4 characters: ";
+		cout << "Invalid input. \nPlease enter a stock symbol of 3-4 characters: ";
 		cin.clear();
 	}
 
@@ -85,7 +85,7 @@ StockTrade getUserInput(map<string, int> stockQty) {
 		if (numOfShares < 0) {
 			cout << "Error: Quantity should be a positive integer." << endl;
 		}
-		else if (type == "sell") {
+		else if (type == "SELL") {
 			if ((stockQty.count(symbol) == 0) || stockQty[symbol] < numOfShares) {
 				cout << "Error: Not enough shares to sell." << endl;
 			}
@@ -111,6 +111,8 @@ StockTrade getUserInput(map<string, int> stockQty) {
 			loop = false;
 		}
 	}
+
+	cout << endl;
 
 	// if trade is a sell
 	// check if trade exists in portfolio already
